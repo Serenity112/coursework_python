@@ -13,28 +13,35 @@ def task():
     
     #ShowHist(low_price, high_price)
     #2 #4
-    #CalcMedian(housing_data, low_price, high_price, 'population')
+    #CalcMedian(housing_data, low_price, high_price, 'total_rooms')
 
     #3 #4
-    #CalcMedian(housing_data, low_price, high_price, 'total_rooms')
+    #CalcMedian(housing_data, low_price, high_price, 'median_income')
     
     #5
-    #Scatter(housing_data, 'total_rooms', 'population')
-    #Box(housing_data, 'population')
-    #
-    
+    #Scatter(housing_data, 'longitude', 'median_house_value')
+    #Scatter(housing_data, 'households', 'population')
+    #Box(housing_data, 'median_house_value')
+    #Box(housing_data, 'latitude')
 
     #6
     #print('All data')
-    #calculate_average_value_and_standard_deviation(housing_data, 'total_rooms')
+    #calculate_average_value_and_standard_deviation(housing_data, 'longitude')
     #print('Low price')
-    #calculate_average_value_and_standard_deviation(low_price, 'total_rooms')
+    #calculate_average_value_and_standard_deviation(low_price, 'longitude')
     #print('High pricez')
-    #calculate_average_value_and_standard_deviation(high_price, 'total_rooms')
+    #calculate_average_value_and_standard_deviation(high_price, 'longitude')
 
     #7 #8
+    evaluate_class_differences(low_price, high_price, 'longitude')
+    evaluate_class_differences(low_price, high_price, 'latitude')
     evaluate_class_differences(low_price, high_price, 'housing_median_age')
-    #evaluate_class_differences(low_price, high_price, 'median_house_value')
+    evaluate_class_differences(low_price, high_price, 'total_rooms')
+    evaluate_class_differences(low_price, high_price, 'total_bedrooms')
+    evaluate_class_differences(low_price, high_price, 'population')
+    evaluate_class_differences(low_price, high_price, 'households')
+    evaluate_class_differences(low_price, high_price, 'median_income')
+    evaluate_class_differences(low_price, high_price, 'median_house_value')
 
 def CalcMedian(data, low_price, high_price, param_name):   
     median_n_all = data[param_name].median()
@@ -112,26 +119,27 @@ def ShowBoxPlot(df, parameter):
     plt.show()
 
 def Scatter(data, param_name1, param_name2):
-    med1 = data[param_name1].median()
-    above_median1 = data[data[param_name1] >= med1]
-    below_median1 = data[data[param_name1] < med1]
+    #med1 = data[param_name1].median()
+    #above_median1 = data[data[param_name1] >= med1]
+    #below_median1 = data[data[param_name1] < med1]
   
-    med2 = data[param_name2].median()
-    above_median2 = data[data[param_name2] >= med2]
-    below_median2 = data[data[param_name2] < med2]
+    #med2 = data[param_name2].median()
+    #above_median2 = data[data[param_name2] >= med2]
+    #below_median2 = data[data[param_name2] < med2]
 
-    ShowScatter(above_median1, param_name1, param_name2)
-    ShowScatter(below_median1, param_name1, param_name2)
-    ShowScatter(above_median2, param_name1, param_name2)
-    ShowScatter(below_median2, param_name1, param_name2)
+    #ShowScatter(above_median1, param_name1, param_name2)
+    #ShowScatter(below_median1, param_name1, param_name2)
+    #ShowScatter(above_median2, param_name1, param_name2)
+    #ShowScatter(below_median2, param_name1, param_name2)
+    ShowScatter(data, param_name1, param_name2)
 
 def Box(data, param_name):
-    med1 = data[param_name].median()
-    above_median1 = data[data[param_name] >= med1]
-    below_median1 = data[data[param_name] < med1]
-    ShowBoxPlot(above_median1, param_name)
-    ShowBoxPlot(below_median1, param_name)
-
+    #med1 = data[param_name].median()
+    #above_median1 = data[data[param_name] >= med1]
+    #below_median1 = data[data[param_name] < med1]
+    #ShowBoxPlot(above_median1, param_name)
+    #ShowBoxPlot(below_median1, param_name)
+    ShowBoxPlot(data, param_name)
 
 def calculate_average_value_and_standard_deviation(df, parameter_name):
     average_value = df[parameter_name].mean()
@@ -147,9 +155,9 @@ def evaluate_class_differences(above_median, below_median, parameter_name):
     print("p-value:", p_value)
     alpha = 0.05
     if p_value < alpha:
-        print(f"Differnve by {parameter_name} stattistically valueable.")
+        print(f"{parameter_name} +")
     else:
-        print(f"Differnve by {parameter_name} not valuable.")
+        print(f"{parameter_name} -")
     print('\n')
 
 if __name__ == "__main__":
