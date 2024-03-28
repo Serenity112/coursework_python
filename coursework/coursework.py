@@ -5,7 +5,9 @@ from scipy.stats import ttest_ind
 
 def task():
     housing_data = pd.read_csv('housing.csv')
- 
+    replace_dict = {'NEAR BAY': 0, '<1H OCEAN': 1, 'INLAND': 2, 'NEAR OCEAN': 3, 'ISLAND' : 4} 
+    housing_data['ocean_proximity'] = housing_data['ocean_proximity'].replace(replace_dict)
+    
     low_price, high_price = SplitDataset(housing_data)
     
     #1
@@ -20,6 +22,15 @@ def task():
     
     #5
     #Scatter(housing_data, 'longitude', 'median_house_value')
+    #Scatter(housing_data, 'latitude', 'median_house_value')
+    #Scatter(housing_data, 'housing_median_age', 'median_house_value')
+    #Scatter(housing_data, 'total_rooms', 'median_house_value')
+    #Scatter(housing_data, 'total_bedrooms', 'median_house_value')
+    #Scatter(housing_data, 'population', 'median_house_value')
+    #Scatter(housing_data, 'households', 'median_house_value')
+    #Scatter(housing_data, 'median_income', 'median_house_value')
+    #Scatter(housing_data, 'median_house_value', 'median_house_value')
+    #Scatter(housing_data, 'ocean_proximity', 'median_house_value')
     #Scatter(housing_data, 'households', 'population')
     #Box(housing_data, 'median_house_value')
     #Box(housing_data, 'latitude')
@@ -33,15 +44,15 @@ def task():
     #calculate_average_value_and_standard_deviation(high_price, 'longitude')
 
     #7 #8
-    evaluate_class_differences(low_price, high_price, 'longitude')
-    evaluate_class_differences(low_price, high_price, 'latitude')
-    evaluate_class_differences(low_price, high_price, 'housing_median_age')
-    evaluate_class_differences(low_price, high_price, 'total_rooms')
-    evaluate_class_differences(low_price, high_price, 'total_bedrooms')
-    evaluate_class_differences(low_price, high_price, 'population')
-    evaluate_class_differences(low_price, high_price, 'households')
-    evaluate_class_differences(low_price, high_price, 'median_income')
-    evaluate_class_differences(low_price, high_price, 'median_house_value')
+    #evaluate_class_differences(low_price, high_price, 'longitude')
+    #evaluate_class_differences(low_price, high_price, 'latitude')
+    #evaluate_class_differences(low_price, high_price, 'housing_median_age')
+    #evaluate_class_differences(low_price, high_price, 'total_rooms')
+    #evaluate_class_differences(low_price, high_price, 'total_bedrooms')
+    #evaluate_class_differences(low_price, high_price, 'population')
+    #evaluate_class_differences(low_price, high_price, 'households')
+    #evaluate_class_differences(low_price, high_price, 'median_income')
+    #evaluate_class_differences(low_price, high_price, 'median_house_value')
 
 def CalcMedian(data, low_price, high_price, param_name):   
     median_n_all = data[param_name].median()
